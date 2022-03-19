@@ -43,7 +43,6 @@ export const Layout: React.FC = ({ children }) => {
     return (
         <>
             <div className="hehhe">
-                hi there
                 <main>{children}</main>
             </div>
         </>
