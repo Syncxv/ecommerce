@@ -11,7 +11,8 @@
         "dev:remix": "remix watch",
         "postinstall": "remix setup node",
         "start": "cross-env NODE_ENV=production node ./build/index.js",
-        "db:push": "prisma db push"
+        "db:push": "prisma db push",
+        "db:studio": "prisma studio"
     },
     "dependencies": {
         "@chakra-ui/react": "^1.8.6",
