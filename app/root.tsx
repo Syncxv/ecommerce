@@ -1,5 +1,6 @@
 import { Links, LinksFunction, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "remix";
 import type { MetaFunction } from "remix";
+import { ChakraProvider } from "@chakra-ui/react";
 
 export const meta: MetaFunction = () => {
     return { title: "New Remix App" };
@@ -9,9 +10,11 @@ export const meta: MetaFunction = () => {
 export default function App() {
     return (
         <Document>
-            <Layout>
-                <Outlet />
-            </Layout>
+            <ChakraProvider>
+                <Layout>
+                    <Outlet />
+                </Layout>
+            </ChakraProvider>
         </Document>
     );
 }
