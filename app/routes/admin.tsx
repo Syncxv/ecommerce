@@ -1,12 +1,44 @@
-import { Outlet } from "remix";
+import { FormControl, FormLabel, Input, FormHelperText, Button, Box, Flex } from "@chakra-ui/react";
+import { ActionFunction, Form, LoaderFunction, Outlet, useLoaderData } from "remix";
+import { getSession } from "../utils/session.server";
 
 interface Props {}
 
+export const loader: LoaderFunction = async ({ request }) => {
+    console.log(request);
+    let session = await getSession(request.headers.get("Cookie"));
+    if (!session.has("token")) return { auth: false };
+    return { auth: true };
+};
+
+export const action: ActionFunction = async ({ request }) => {
+    const form = await request.formData();
+    console.log(form);
+    return { hi: true };
+};
+
 const Admin: React.FC<Props> = (props) => {
+    const { auth } = useLoaderData();
     return (
         <>
-            <div>admin eh</div>
-            <Outlet />
+            {auth ? (
+                <>
+                    <div>admin eh</div>
+                    <Outlet />
+                </>
+            ) : (
+                <Flex alignItems="center" justifyContent="center" height="100vh">
+                    <form method="POST">
+                        <FormControl>
+                            <FormLabel htmlFor="username">Username</FormLabel>
+                            <Input id="username" type="text" name="username" />
+                            <FormLabel htmlFor="password">Password</FormLabel>
+                            <Input id="password" type="password" name="password" />
+                        </FormControl>
+                        <Button type="submit">Submit</Button>
+                    </form>
+                </Flex>
+            )}
         </>
     );
 };
