@@ -22,6 +22,7 @@ model admin {
   id  String @id @default(uuid())
   username String
   password String
+  avatar String?
   updatedAt DateTime @default(now())
   createdAt DateTime @updatedAt
 }
