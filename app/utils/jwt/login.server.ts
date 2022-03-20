@@ -18,6 +18,7 @@ export const login = async ({ username, password, request }: LoginArgumnets) => 
     const token = createAcessToken(admin);
     let session = await getSession(request.headers.get("Cookie"));
     session.set("token", token);
+    session.set("admin", { ...admin, password: undefined });
     return redirect("/admin/dashboard", {
         headers: {
             "Set-Cookie": await commitSession(session),

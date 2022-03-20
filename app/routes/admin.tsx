@@ -10,7 +10,7 @@ export const loader: LoaderFunction = async ({ request }) => {
     console.log(request);
     let session = await getSession(request.headers.get("Cookie"));
     if (!session.has("token")) return { auth: false };
-    return { auth: true };
+    return { auth: true, admin: session.get("admin") };
 };
 
 export const action: ActionFunction = async ({ request }) => {
@@ -23,7 +23,8 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 const Admin: React.FC<Props> = (props) => {
-    const { auth } = useLoaderData();
+    const { auth, admin } = useLoaderData();
+    console.log(auth, admin);
     return (
         <>
             {auth ? (
