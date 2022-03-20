@@ -8,7 +8,6 @@ interface Props {}
 export const loader: LoaderFunction = async ({ request }) => {
     console.log(request);
     let session = await getSession(request.headers.get("Cookie"));
-    console.log(session);
     if (!session.has("token")) return { auth: false };
     return { auth: true };
 };
