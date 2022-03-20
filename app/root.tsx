@@ -40,11 +40,5 @@ export const Document: React.FC = ({ children }) => {
 };
 
 export const Layout: React.FC = ({ children }) => {
-    return (
-        <>
-            <div className="hehhe">
-                <main>{children}</main>
-            </div>
-        </>
-    );
+    return <> {children} </>;
 };
