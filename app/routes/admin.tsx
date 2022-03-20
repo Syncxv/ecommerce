@@ -1,5 +1,6 @@
 import { FormControl, FormLabel, Input, FormHelperText, Button, Box, Flex } from "@chakra-ui/react";
 import { ActionFunction, Form, LoaderFunction, Outlet, useLoaderData } from "remix";
+import { login } from "../utils/jwt/login.server";
 import { getSession } from "../utils/session.server";
 
 interface Props {}
@@ -7,14 +8,18 @@ interface Props {}
 export const loader: LoaderFunction = async ({ request }) => {
     console.log(request);
     let session = await getSession(request.headers.get("Cookie"));
+    console.log(session);
     if (!session.has("token")) return { auth: false };
     return { auth: true };
 };
 
 export const action: ActionFunction = async ({ request }) => {
     const form = await request.formData();
-    console.log(form);
-    return { hi: true };
+    const username = form.get("username");
+    const password = form.get("password");
+    if (!username) return { errors: [{ message: "username aint there" }] };
+    if (!password) return { errors: [{ message: "password aint there aint there" }] };
+    return await login({ request, username: username.toString(), password: password.toString() });
 };
 
 const Admin: React.FC<Props> = (props) => {

@@ -3,7 +3,7 @@ import { db } from "~/utils/db.server";
 
 export const loader = async () => {
     console.log(db);
-    const test = db.TEST.findMany();
+    const test = db.tEST.findMany();
     console.log(test);
     return { hi: "hehe", test: test || "bruh" };
 };
