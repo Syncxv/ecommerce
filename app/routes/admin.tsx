@@ -1,5 +1,6 @@
 import { FormControl, FormLabel, Input, FormHelperText, Button, Box, Flex } from "@chakra-ui/react";
 import { ActionFunction, Form, LoaderFunction, Outlet, useLoaderData } from "remix";
+import LoginForm from "../components/LoginForm";
 import { login } from "../utils/jwt/login.server";
 import { getSession } from "../utils/session.server";
 
@@ -31,17 +32,7 @@ const Admin: React.FC<Props> = (props) => {
                     <Outlet />
                 </>
             ) : (
-                <Flex alignItems="center" justifyContent="center" height="100vh">
-                    <form method="POST">
-                        <FormControl>
-                            <FormLabel htmlFor="username">Username</FormLabel>
-                            <Input id="username" type="text" name="username" />
-                            <FormLabel htmlFor="password">Password</FormLabel>
-                            <Input id="password" type="password" name="password" />
-                        </FormControl>
-                        <Button type="submit">Submit</Button>
-                    </form>
-                </Flex>
+                <LoginForm />
             )}
         </>
     );
