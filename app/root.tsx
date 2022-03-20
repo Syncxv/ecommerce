@@ -31,8 +31,8 @@ export const Document: React.FC = ({ children }) => {
             </head>
             <body>
                 {children}
-                <ScrollRestoration />
-                <Scripts />
+                {/* <ScrollRestoration />
+                <Scripts /> */}
                 {process.env.NODE_ENV === "development" && <LiveReload />}
             </body>
         </html>

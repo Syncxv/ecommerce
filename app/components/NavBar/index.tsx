@@ -24,7 +24,7 @@ const NavBar: React.FC<Props> = ({ children }) => {
                 justifyContent="space-between"
                 borderRight="1px solid"
                 borderColor="blackAlpha.300"
-                width="30vmin"
+                width="32vmin"
                 as="nav"
                 height="100vh"
             >
